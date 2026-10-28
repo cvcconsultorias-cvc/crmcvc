@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CRM · CVC Consultorías y Publicidad</title>
+<style>
+:root{--bg:#0a1220;--bg2:#101c30;--card:#ffffff12;--bd:#ffffff1f;--tx:#eef4fb;--mu:#93a6bd;--c:#22c3f0;--m:#ff4d8d;--y:#ffc93c;--g:#2ee6a6;--rd:#ff6b6b;--in:#0a1220;--sh:#0006;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef3f9;--bg2:#fff;--card:#ffffffcc;--bd:#d5deea;--tx:#11202f;--mu:#566a80;--c:#0786b3;--m:#d6246e;--y:#c98a00;--g:#0b9a6c;--rd:#d63b3b;--in:#fff;--sh:#2a4a7022;color-scheme:light}}
+:root[data-theme="light"]{--bg:#eef3f9;--bg2:#fff;--card:#ffffffcc;--bd:#d5deea;--tx:#11202f;--mu:#566a80;--c:#0786b3;--m:#d6246e;--y:#c98a00;--g:#0b9a6c;--rd:#d63b3b;--in:#fff;--sh:#2a4a7022;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--tx);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 8% -5%,#22c3f02e,transparent 60%),radial-gradient(800px 500px at 100% 0,#ff4d8d26,transparent 60%),radial-gradient(700px 500px at 50% 110%,#ffc93c1a,transparent 60%),var(--bg);background-attachment:fixed}
+main{max-width:1240px;margin:0 auto;padding:18px 16px 120px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.top h1{margin:0;font-size:22px;font-weight:800}.top p{margin:0;color:var(--mu);font-size:13px}
+.nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:4px;backdrop-filter:blur(10px)}
+.tab{border:0;background:none;color:var(--mu);padding:9px 18px;border-radius:99px;font:inherit;font-weight:700;cursor:pointer;transition:.25s}
+.tab.on{background:linear-gradient(120deg,var(--c),var(--m));color:#fff;box-shadow:0 6px 18px #ff4d8d44}
+.panel{display:none}.panel.on{display:block;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;backdrop-filter:blur(12px);box-shadow:0 10px 30px var(--sh);margin-bottom:16px}
+.card h3{margin:0 0 12px;font-size:15px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:6px 14px;font:inherit;font-weight:600;cursor:pointer;transition:.2s}
+.chip:hover{transform:translateY(-2px)}.chip.on{background:var(--c);border-color:var(--c);color:#04141d}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f6e94,#6a2bd0 55%,#d6246e);color:#fff;border:0;display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;align-items:center;padding:24px}
+.hero:before{content:"";position:absolute;width:320px;height:320px;right:-80px;top:-120px;border-radius:50%;background:#ffffff1f;animation:fl 7s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translate(-40px,30px) scale(1.15)}}
+.hero small{opacity:.85;font-size:13px}.hero .big{font-size:clamp(34px,7vw,58px);font-weight:900;line-height:1.05;margin:4px 0}
+.hero .tag{display:inline-block;background:#ffffff2e;border-radius:99px;padding:4px 12px;font-weight:700}
+.hero .mini{display:flex;gap:22px;flex-wrap:wrap;position:relative}.hero .mini b{display:block;font-size:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;backdrop-filter:blur(10px);transition:.25s;border-top:3px solid var(--k,var(--c))}
+.kpi:hover{transform:translateY(-4px);box-shadow:0 14px 30px var(--sh)}
+.kpi span{color:var(--mu);font-size:12px}.kpi b{display:block;font-size:21px;margin-top:2px}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}.charts .card{margin:0}
+.br{display:grid;grid-template-columns:minmax(70px,28%) 1fr auto;gap:8px;align-items:center;margin:8px 0}
+.bl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bt{background:#ffffff14;border-radius:8px;height:14px;overflow:hidden}.bt i{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.bv{font-weight:700;white-space:nowrap;text-align:right}.bv small{color:var(--mu);font-weight:400;margin-left:6px}
+.donut{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.ring{width:140px;height:140px;border-radius:50%;flex:none}
+.ring div{width:76px;height:76px;border-radius:50%;background:var(--bg2);margin:32px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.leg div{display:flex;gap:8px;align-items:center;margin:5px 0}.leg i{width:11px;height:11px;border-radius:4px}
+.cols{display:flex;gap:10px;align-items:flex-end;height:210px;overflow-x:auto;padding-top:8px}
+.col{flex:1;min-width:58px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.pair{display:flex;gap:4px;align-items:flex-end;height:150px}.pair i{display:block;width:20px;height:0;border-radius:6px 6px 0 0;transition:height .9s cubic-bezier(.2,.8,.2,1)}
+.col small{font-size:11px;color:var(--mu);margin-top:4px}.col em{font-style:normal;font-size:11px;font-weight:700}
+.sub{color:var(--mu);font-size:12px}.mu{color:var(--mu)}
+input,select,textarea{width:100%;padding:10px 11px;border:1px solid var(--bd);border-radius:10px;background:var(--in);color:var(--tx);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--c);outline-offset:1px}
+input[readonly]{font-weight:800;color:var(--g)}
+label{display:block;font-size:12px;font-weight:600;color:var(--mu);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.s2{grid-column:span 2}@media(max-width:520px){.s2{grid-column:auto}}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.btn{border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(120deg,var(--c),var(--m))}
+.btn.alt{background:var(--card);color:var(--tx);border:1px solid var(--bd)}.btn.sm{padding:5px 9px;font-size:12px}.btn.del{color:var(--rd)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:900px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--bd);vertical-align:top}th{font-size:12px;color:var(--mu);font-weight:600}
+.n{text-align:right;white-space:nowrap}tbody tr{transition:.15s}tbody tr:hover{background:#ffffff0d}
+.late{color:var(--rd);font-weight:700}.debt{color:var(--m);font-weight:700}.ok{color:var(--g);font-weight:700}
+.st{border:0;border-radius:99px;padding:5px 9px;font-weight:800;font-size:12px;width:auto;color:#111}
+.s0{background:var(--m)}.s1{background:var(--y)}.s3{background:var(--c)}
+#fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-end;gap:10px;z-index:30}
+#fab .it{display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(14px) scale(.8);pointer-events:none;transition:.25s}
+#fab.open .it{opacity:1;transform:none;pointer-events:auto}#fab.open .it:nth-child(2){transition-delay:.05s}
+.it span{background:var(--bg2);border:1px solid var(--bd);padding:6px 12px;border-radius:99px;font-weight:700;box-shadow:0 6px 18px var(--sh)}
+.it button,#fb{width:52px;height:52px;border-radius:50%;border:0;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 10px 26px #0006}
+#fb{width:62px;height:62px;font-size:32px;background:linear-gradient(135deg,var(--c),var(--m));transition:.3s;animation:pu 2.4s infinite}
+#fab.open #fb{transform:rotate(135deg);animation:none}
+@keyframes pu{0%{box-shadow:0 0 0 0 #ff4d8d88}70%{box-shadow:0 0 0 18px #ff4d8d00}100%{box-shadow:0 0 0 0 #ff4d8d00}}
+#mo{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:14px;z-index:50;backdrop-filter:blur(4px)}
+#mo .card{background:var(--bg2);max-width:640px;width:100%;max-height:92vh;overflow:auto;margin:0;animation:in .3s}
+.sec{display:none}.sec.on{display:block}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<main>
+<div class="top"><div><h1>CVC Consultorías y Publicidad</h1><p>Ventas, costos, gastos y utilidades en tiempo real</p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<button class="btn" type="button" onclick="openM('t')">＋ Nuevo trabajo / venta</button>
+<button class="btn" type="button" onclick="openM('g')">＋ Nuevo gasto</button>
+<div class="nav"><button class="tab on" data-t="res">Resumen</button><button class="tab" data-t="tra">Trabajos</button><button class="tab" data-t="gas">Gastos</button><button class="tab" data-t="cli">Clientes</button><button class="tab" data-t="soc">Socios</button><button class="tab" data-t="base">Base</button><button class="tab" data-t="adm">Administración</button><button class="tab" data-t="nube">Nube</button></div>
+</div></div>
+
+<section id="res" class="panel on">
+ <div class="chips" id="chips"><button class="chip on" data-p="all">Todo</button><button class="chip" data-p="m">Este mes</button><button class="chip" data-p="3m">3 meses</button><button class="chip" data-p="y">Este año</button><select id="pm" style="width:auto;margin-left:auto" aria-label="Medir por"><option value="v">Medir por valor</option><option value="n">Medir por n.º de trabajos</option></select></div>
+ <div class="card hero"><div style="position:relative"><small>Utilidad neta (ventas − costo de trabajos − gastos)</small><div class="big" id="hU">$0</div><span class="tag" id="hM">0% de margen</span></div><div class="mini" id="hMini"></div></div>
+ <div class="kpis" id="kp"></div>
+ <div class="charts">
+  <div class="card" style="grid-column:1/-1"><h3>Ingresos vs gastos por mes <span class="sub">· cian: ingresos (ventas) · rosa: gastos</span></h3><div id="chMes"></div></div>
+  <div class="card"><h3>De la venta a la utilidad</h3><div id="chWf"></div></div>
+  <div class="card"><h3>Trabajos por estado</h3><div id="chEst"></div></div>
+  <div class="card"><h3>Ventas por ciudad</h3><div id="chCiu"></div></div>
+  <div class="card"><h3>Ventas por sector</h3><div id="chSec"></div></div>
+  <div class="card"><h3>Ventas por tipo de producto</h3><div id="chTip"></div></div>
+  <div class="card"><h3>Utilidad por tipo de producto</h3><div id="chUt"></div></div>
+  <div class="card"><h3>Mejores clientes</h3><div id="chCli"></div></div>
+  <div class="card"><h3>Saldo por cobrar por cliente</h3><div id="chSal"></div></div>
+  <div class="card"><h3>Gastos por categoría</h3><div id="chGc"></div></div>
+ </div>
+</section>
+
+<section id="tra" class="panel">
+ <div class="kpis" id="tk"></div>
+ <div class="card"><div class="row" style="margin-bottom:12px"><div style="flex:2;min-width:180px"><label for="q">Buscar</label><input id="q" placeholder="Cliente, ciudad, producto…"></div><div style="min-width:150px"><label for="fs">Estado</label><select id="fs"><option value="">Todos</option><option>Diseño</option><option>En producción</option><option>Entregado</option></select></div><div style="min-width:150px"><label for="fd">Pago</label><select id="fd"><option value="">Todos</option><option value="d">Con saldo</option><option value="p">Pagados</option></select></div></div>
+ <div class="tw"><table><thead><tr><th>Cliente</th><th>Trabajo</th><th>Fechas</th><th>Tipo</th><th class="n">Total</th><th class="n">Costo</th><th class="n">Utilidad</th><th class="n">Abono</th><th class="n">Saldo</th><th>Estado</th><th></th></tr></thead><tbody id="tb"></tbody></table></div><p id="em" class="mu"></p></div>
+ <details class="card"><summary><b>Respaldo de datos</b></summary><p class="sub">Los datos viven en este navegador. Genera el respaldo y guárdalo; para restaurar, pega el texto y presiona Restaurar.</p><textarea id="bk" style="min-height:80px" aria-label="Respaldo"></textarea><div class="row" style="margin-top:8px"><button class="btn alt" id="bkG">Generar respaldo</button><button class="btn alt" id="bkR">Restaurar respaldo</button></div><p id="bkM" class="sub" role="status"></p></details>
+</section>
+
+<section id="gas" class="panel">
+ <div class="kpis" id="gk"></div>
+ <div class="card"><div class="tw"><table style="min-width:620px"><thead><tr><th>Fecha</th><th>Descripción</th><th>Categoría</th><th class="n">Valor</th><th></th></tr></thead><tbody id="gb"></tbody></table></div><p id="ge" class="mu"></p></div>
+</section>
+
+<section id="cli" class="panel">
+ <div class="card"><h3>Base de datos de clientes</h3>
+  <p class="sub">Se crea y actualiza automáticamente al registrar trabajos. La exportación conserva los contactos aunque reinicies periodos del dashboard.</p>
+  <div class="row" style="margin-bottom:12px"><button class="btn" id="expCli">Exportar clientes a Excel (CSV)</button><button class="btn alt" id="expTrab">Exportar trabajos</button><input id="buscarCli" placeholder="Buscar cliente, contacto, teléfono o ciudad" style="max-width:320px"></div>
+  <div class="tw"><table style="min-width:850px"><thead><tr><th>Cliente / empresa</th><th>Contacto</th><th>Teléfono</th><th>Dirección</th><th>Ciudad</th><th>Último registro</th></tr></thead><tbody id="cliBody"></tbody></table></div><p id="cliEmpty" class="mu"></p>
+ </div>
+</section>
+
+<section id="soc" class="panel">
+ <div class="card"><h3>Socios y distribución de utilidad neta</h3>
+  <p class="sub">Los porcentajes deben sumar 100%. Se propone una distribución inicial 50% Fernando y 50% Angie, que puedes modificar.</p>
+  <div class="row"><div style="flex:1;min-width:180px"><label for="nuevoSocio">Nombre del nuevo socio</label><input id="nuevoSocio" placeholder="Nombre completo"></div><button class="btn" id="agSocio">＋ Agregar socio</button><button class="btn alt" id="guardarSocios">Guardar porcentajes</button></div>
+  <div id="sociosLista" class="grid" style="margin-top:12px"></div>
+ </div>
+ <div class="card"><h3>Liquidación semanal de socios</h3>
+  <p class="sub">La liquidación se actualiza automáticamente al registrar o editar ventas/gastos y al cambiar fechas. Si estás consultando un periodo específico, usa Calcular liquidación para forzar el recálculo. Calcula la utilidad neta del periodo semanal seleccionado (ventas − costos de trabajos − gastos). El pago puede registrarse los viernes o sábados. Al marcarlo como pagado, se registra como gasto de Nómina y desaparece de los pendientes.</p>
+  <div class="grid"><div><label for="semDesde">Semana desde</label><input id="semDesde" type="date"></div><div><label for="semHasta">Semana hasta</label><input id="semHasta" type="date"></div><div><label for="fechaPago">Fecha de pago (viernes o sábado)</label><input id="fechaPago" type="date"></div></div>
+  <div class="row" style="margin:12px 0"><button class="btn" id="calcularSocios">Calcular liquidación</button></div>
+  <div id="liquidacionInfo" class="sub"></div><div class="tw"><table style="min-width:650px"><thead><tr><th>Socio</th><th>Participación</th><th class="n">Pago propuesto</th><th></th></tr></thead><tbody id="pagosBody"></tbody></table></div>
+  <p class="sub">Nota: cada pago marcado como pagado se agrega a Gastos como categoría Nómina con descripción “Pago socio: [nombre]”.</p>
+ </div>
+</section>
+
+<section id="base" class="panel">
+ <div class="card"><h3>Base de distribución de utilidad neta</h3>
+  <p class="sub">Configura el porcentaje destinado al ahorro semestral y el porcentaje de comisión. La comisión solo se calcula en trabajos marcados como “Sí”. Sin trabajos con comisión, la distribución se ajusta automáticamente a 45% Fernando, 45% Angie y el porcentaje de ahorro configurado.</p>
+  <div class="grid">
+   <div><label for="pctAhorro">Ahorro semestral (%)</label><input id="pctAhorro" type="number" min="0" max="100" step="1" value="10"></div>
+   <div><label for="pctComision">Comisión sobre utilidad (%)</label><input id="pctComision" type="number" min="0" max="100" step="1" value="10"></div>
+  </div>
+  <div class="row" style="margin-top:12px"><button class="btn" id="guardarBase">Guardar porcentajes</button></div><p id="baseMsg" class="sub" role="status"></p>
+ </div>
+</section>
+
+<section id="adm" class="panel">
+ <div class="card"><h3>Reiniciar dashboard por periodo</h3>
+  <p class="sub">Esta acción elimina trabajos y gastos del periodo seleccionado. La base maestra de clientes no se borra. Exporta un respaldo antes de continuar si necesitas conservar el detalle operativo.</p>
+  <div class="grid"><div><label for="resetPeriodo">Periodo</label><select id="resetPeriodo"><option value="week">Semana actual</option><option value="month">Mes actual</option><option value="quarter">Trimestre actual</option><option value="year">Año actual</option><option value="all">Todo el historial</option></select></div></div>
+  <div class="row" style="margin-top:12px"><button class="btn del" id="resetBtn">Eliminar información del periodo</button><button class="btn alt" id="bkAdmin">Generar respaldo antes de reiniciar</button></div><p id="resetMsg" class="late" role="status"></p>
+ </div>
+</section>
+
+<section id="nube" class="panel">
+ <div class="card"><h3>Sincronización en tiempo real entre computadores y celulares</h3>
+  <p class="sub">Para compartir los mismos datos desde cualquier ciudad, el CRM utiliza Firebase Authentication anónimo y Cloud Firestore. No necesitas crear correo ni contraseña. La configuración del proyecto se incorpora al archivo para que el acceso sea automático.</p>
+  <div class="grid">
+   <div><label for="fbApi">Firebase API Key</label><input id="fbApi" placeholder="AIza…"></div>
+   <div><label for="fbAuthDomain">Auth Domain</label><input id="fbAuthDomain" placeholder="tu-proyecto.firebaseapp.com"></div>
+   <div><label for="fbProject">Project ID</label><input id="fbProject" placeholder="tu-proyecto"></div>
+   <div><label for="fbAppId">App ID</label><input id="fbAppId" placeholder="1:…:web:…"></div>
+  </div>
+  <div class="row" style="margin-top:12px"><button class="btn" id="cloudConnect">Conectar a la nube</button></div>
+  <p id="cloudStatus" class="sub" role="status">Modo local: los datos solo están en este navegador hasta conectar Firebase.</p>
+  <p class="sub">Acceso sin contraseña: cualquier persona con el enlace podrá consultar, registrar, modificar o borrar datos. No guardes información confidencial. Mantén copias de seguridad.</p>
+ </div>
+</section>
+</main>
+
+<div id="fab"><div class="it"><span>Registrar abono</span><button style="background:var(--g);color:#062" data-f="a" aria-label="Registrar abono">$</button></div>
+<div class="it"><span>Nuevo gasto</span><button style="background:var(--m)" data-f="g" aria-label="Nuevo gasto">↓</button></div>
+<div class="it"><span>Nuevo trabajo / venta</span><button style="background:var(--c)" data-f="t" aria-label="Nuevo trabajo o venta">+</button></div>
+<button id="fb" aria-label="Acciones rápidas" title="Abrir opciones para registrar trabajos, abonos y gastos">+</button></div>
+
+<div id="mo"><div class="card">
+ <div class="sec" id="sT"><h3 id="tT">Nuevo trabajo</h3><div class="grid">
+  <div><label for="cliente">Nombre del cliente / empresa *</label><input id="cliente" list="dC" autocomplete="off"></div>
+  <div><label for="contacto">Nombre de contacto *</label><input id="contacto" autocomplete="off"></div>
+  <div><label for="telefono">Teléfono *</label><input id="telefono" type="tel" autocomplete="tel"></div>
+  <div><label for="direccion">Dirección</label><input id="direccion" autocomplete="street-address"></div>
+  <div><label for="ciudad">Ciudad *</label><input id="ciudad" list="dY" autocomplete="off"></div>
+  <div><label for="sector">Sector</label><select id="sector"><option>Comercio</option><option>Industria</option><option>Educación</option><option>Salud</option><option>Gobierno</option><option>Servicios</option><option>Persona natural</option><option>Otro</option></select></div>
+  <div><label for="tipo">Tipo de producto *</label><input id="tipo" list="dP" autocomplete="off" placeholder="Valla, Pendón, Aviso…"></div>
+  <div class="s2"><label for="desc">Descripción del trabajo</label><input id="desc"></div>
+  <div><label for="recibido">Fecha recibido *</label><input id="recibido" type="date"></div>
+  <div><label for="entrega">Fecha de entrega</label><input id="entrega" type="date"></div>
+  <div><label for="tipoRegistro">Tipo de registro *</label><select id="tipoRegistro"><option value="venta">Venta</option><option value="cotizado">Cotizado</option></select></div>
+   <div><label for="total">Valor total *</label><input id="total" type="number" min="0" step="1000" inputmode="numeric"></div>
+  <div><label for="costo">Costo del trabajo</label><input id="costo" type="number" min="0" step="1000" inputmode="numeric" value="0"></div>
+  <div><label for="abono">Abono</label><input id="abono" type="number" min="0" step="1000" inputmode="numeric" value="0"></div>
+  <div><label for="saldo">Saldo (total − abono)</label><input id="saldo" readonly></div>
+  <div><label for="util">Utilidad (total − costo)</label><input id="util" readonly></div>
+  <div><label for="comisionActiva">¿Este trabajo genera comisión?</label><select id="comisionActiva"><option value="no">No</option><option value="si">Sí</option></select></div>
+  <div id="comisionPersonaWrap" style="display:none"><label for="comisionPersona">Nombre de quien recibe comisión *</label><input id="comisionPersona" placeholder="Nombre del beneficiario"></div>
+  <div><label for="estado">Estado</label><select id="estado"><option>Diseño</option><option>En producción</option><option>Entregado</option></select></div>
+ </div><datalist id="dC"></datalist><datalist id="dY"></datalist><datalist id="dP"></datalist></div>
+ <div class="sec" id="sG"><h3 id="gT">Nuevo gasto</h3><div class="grid">
+  <div><label for="gf">Fecha *</label><input id="gf" type="date"></div>
+  <div><label for="gv">Valor *</label><input id="gv" type="number" min="0" step="1000" inputmode="numeric"></div>
+  <div><label for="gc">Categoría</label><select id="gc"><option>Nómina</option><option>Arriendo y servicios</option><option>Materiales</option><option>Transporte</option><option>Publicidad</option><option>Comisión</option><option>Impuestos</option><option>Otros</option></select></div>
+  <div class="s2"><label for="gd">Descripción *</label><input id="gd"></div></div></div>
+ <div class="sec" id="sA"><h3>Registrar abono</h3><p class="sub" id="aS"></p><label for="av">Valor del abono</label><input id="av" type="number" min="0" step="1000" inputmode="numeric"></div>
+ <p id="msg" class="late" role="status"></p>
+ <div class="row" style="margin-top:10px"><button class="btn" id="ok">Guardar</button><button class="btn alt" id="no">Cancelar</button></div>
+</div></div>
+
+<script>
+const $=id=>document.getElementById(id),ST=['Diseño','En producción','Entregado'],SC=['var(--m)','var(--y)','var(--c)'];
+const ld=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+let D=ld('cvc_crm_v1'),G=ld('cvc_gastos_v1'),per='all',mode='',eid=null;
+let CLIENTS=ld('cvc_clients_v1'), PARTNERS=ld('cvc_partners_v1');
+if(!PARTNERS.length) PARTNERS=[{id:'fernando',name:'Fernando',pct:50},{id:'angie',name:'Angie',pct:50}];
+let CLOUD=null, cloudSaveTimer=null, pendingPayouts=ld('cvc_payouts_v1'), paidPayouts=ld('cvc_paid_payouts_v1');
+// CONFIGURACIÓN ÚNICA: pega aquí los datos de Firebase una sola vez antes de publicar.
+const FIREBASE_CONFIG = { apiKey: "AIzaSyDQX-pe8Ra_NMPH-KR3WrIzVbBsavfiM30", authDomain: "crm-cvc-c3116.firebaseapp.com", projectId: "crm-cvc-c3116", appId: "1:199081791616:web:36861d5966db330dc99665" };
+// PIN de acceso visual a cada módulo (cámbialos antes de publicar).
+const MODULE_PINS = { base: "2580", adm: "2580", nube: "2580" };
+const unlockedModules = new Set();
+let BASE=(()=>{try{return JSON.parse(localStorage.getItem('cvc_base_v1')||'{"ahorro":10,"comision":10}')}catch(e){return {ahorro:10,comision:10}}})();
+let paidDistributions=ld('cvc_paid_distributions_v1');
+const sv=()=>{
+ try{
+  localStorage.setItem('cvc_crm_v1',JSON.stringify(D));localStorage.setItem('cvc_gastos_v1',JSON.stringify(G));
+  localStorage.setItem('cvc_clients_v1',JSON.stringify(CLIENTS));localStorage.setItem('cvc_partners_v1',JSON.stringify(PARTNERS));localStorage.setItem('cvc_payouts_v1',JSON.stringify(pendingPayouts));localStorage.setItem('cvc_paid_payouts_v1',JSON.stringify(paidPayouts));localStorage.setItem('cvc_base_v1',JSON.stringify(BASE));localStorage.setItem('cvc_paid_distributions_v1',JSON.stringify(paidDistributions));
+ }catch(e){}
+ if(CLOUD && CLOUD.db && CLOUD.user){
+  clearTimeout(cloudSaveTimer);
+  cloudSaveTimer=setTimeout(async()=>{
+   try{await CLOUD.db.collection('crm_cvc').doc('shared').set({D,G,CLIENTS,PARTNERS,pendingPayouts,paidPayouts,BASE,paidDistributions,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});$('cloudStatus').textContent='Sincronizado en la nube. Los cambios se compartirán con los demás dispositivos autorizados.'}
+   catch(e){$('cloudStatus').textContent='Error al sincronizar: '+e.message}
+  },450);
+ }
+};
+const fm=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n||0);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const tt=s=>s.trim().toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase());
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=iso(new Date()),sal=o=>Math.max(0,(+o.total||0)-(+o.abono||0)),sum=(L,k)=>L.reduce((s,o)=>s+(+o[k]||0),0);
+const fd=d=>d?new Date(d+'T12:00').toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'2-digit'}):'—';
+const mon=k=>new Date(k+'-01T12:00').toLocaleDateString('es-CO',{month:'short',year:'2-digit'});
+const lim=()=>{const n=new Date();return per==='m'?iso(new Date(n.getFullYear(),n.getMonth(),1)):per==='3m'?iso(new Date(n.getFullYear(),n.getMonth()-2,1)):per==='y'?iso(new Date(n.getFullYear(),0,1)):''};
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+ const target=b.dataset.t;
+ if(['base','adm','nube'].includes(target)&&!unlockedModules.has(target)){
+   const entered=prompt('Ingresa el PIN para acceder a '+({base:'Base',adm:'Administración',nube:'Nube'}[target])+':');
+   if(entered===null)return;
+   if(entered!==MODULE_PINS[target]){alert('PIN incorrecto.');return}
+   unlockedModules.add(target);
+ }
+ document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===target));render()
+});
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{per=b.dataset.p;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));render()});
+$('pm').onchange=render;
+$('fb').onclick=()=>$('fab').classList.toggle('open');
+document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{
+ $('fab').classList.remove('open');
+ if(b.dataset.f==='a'){
+   const opts=D.filter(o=>sal(o)>0);
+   if(!opts.length){alert('No hay trabajos con saldo pendiente para registrar abonos.');return}
+   const choice=prompt('Selecciona el número del trabajo para registrar el abono:\n'+opts.map((o,i)=>(i+1)+'. '+o.cliente+' · '+o.tipo+' · saldo '+fm(sal(o))).join('\n'));
+   if(choice===null)return;
+   const idx=Number(choice)-1;
+   if(!Number.isInteger(idx)||idx<0||idx>=opts.length){alert('Selección no válida.');return}
+   openM('a',opts[idx].id);
+ } else openM(b.dataset.f)
+});
+
+function cnt(el,to){const from=el._v||0;el._v=to;if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=fm(to);return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/700),e=1-Math.pow(1-p,3);el.textContent=fm(from+(to-from)*e);if(p<1)requestAnimationFrame(f)})(t0)}
+function grow(el){requestAnimationFrame(()=>requestAnimationFrame(()=>{el.querySelectorAll('[data-w]').forEach(i=>i.style.width=i.dataset.w);el.querySelectorAll('[data-h]').forEach(i=>i.style.height=i.dataset.h)}))}
+function grp(L,k,f){const r={};L.forEach(o=>{const key=o[k]||'Sin dato';r[key]=(r[key]||0)+f(o)});return Object.entries(r).sort((a,b)=>b[1]-a[1])}
+function bars(id,arr,col,money=true,pct=true){const el=$(id);if(!arr.length){el.innerHTML='<p class="mu">Sin datos en este periodo.</p>';return}const mx=Math.max(1,...arr.map(a=>Math.abs(a[1]))),tot=arr.reduce((s,a)=>s+Math.abs(a[1]),0)||1;el.innerHTML=arr.slice(0,8).map(([k,v])=>`<div class="br"><div class="bl" title="${esc(k)}">${esc(k)}</div><div class="bt"><i data-w="${Math.max(3,Math.abs(v)/mx*100)}%" style="background:${v<0?'var(--rd)':col}"></i></div><div class="bv">${money?fm(v):v}${pct?`<small>${Math.round(Math.abs(v)/tot*100)}%</small>`:''}</div></div>`).join('');grow(el)}
+
+function render(){
+ const f=lim(),m=$('pm').value,L=D.filter(o=>(o.tipoRegistro||'venta')!=='cotizado'&&(!f||o.recibido>=f)),X=G.filter(g=>!f||g.fecha>=f),w=o=>m==='n'?1:+o.total||0,mn=m==='n';
+ const V=sum(L,'total'),A=sum(L,'abono'),C=sum(L,'costo'),E=sum(X,'valor'),S=V-A,UN=V-C-E;
+ cnt($('hU'),UN);$('hU').style.color=UN<0?'#ffd0d0':'';$('hM').textContent=(V?Math.round(UN/V*100):0)+'% de margen neto';
+ $('hMini').innerHTML=[['Utilidad bruta',fm(V-C)],['Cobrado',fm(A)],['Por cobrar',fm(S)]].map(([a,b])=>`<div><small>${a}</small><b>${b}</b></div>`).join('');
+ const K=[['Ventas',V,'var(--c)'],['Cobrado (abonos)',A,'var(--g)'],['Saldo por cobrar',S,'var(--m)'],['Costo de trabajos',C,'var(--y)'],['Gastos',E,'var(--rd)'],['Ticket promedio',L.length?V/L.length:0,'var(--c)']];
+ $('kp').innerHTML=K.map(([a,b,c],i)=>`<div class="kpi" style="--k:${c}"><span>${a}</span><b data-k="${i}">$0</b></div>`).join('');K.forEach(([a,b],i)=>cnt($('kp').querySelector(`[data-k="${i}"]`),b));
+ // mensual
+ const ms={};L.forEach(o=>{const k=o.recibido.slice(0,7);(ms[k]=ms[k]||{v:0,g:0}).v+=+o.total||0});X.forEach(g=>{const k=g.fecha.slice(0,7);(ms[k]=ms[k]||{v:0,g:0}).g+=+g.valor||0});
+ const ks=Object.keys(ms).sort().slice(-8),mx=Math.max(1,...ks.map(k=>Math.max(ms[k].v,ms[k].g)));
+ $('chMes').innerHTML=ks.length?`<div class="cols">${ks.map(k=>{const x=ms[k],n=x.v-x.g;return `<div class="col" title="Ingresos ${fm(x.v)} · Gastos ${fm(x.g)}"><div class="pair"><i data-h="${Math.max(3,x.v/mx*150)}px" style="background:var(--c)"></i><i data-h="${Math.max(3,x.g/mx*150)}px" style="background:var(--m)"></i></div><small>${mon(k)}</small><em style="color:${n<0?'var(--rd)':'var(--g)'}">${n<0?'−':'+'}${fm(Math.abs(n)).replace(/\s/g,'')}</em></div>`}).join('')}</div>`:'<p class="mu">Registra trabajos y gastos para ver la comparación.</p>';grow($('chMes'));
+ bars('chWf',[['Ventas',V],['− Costo de trabajos',C],['− Gastos',E],['= Utilidad neta',UN]],'var(--c)',true,false);
+ const el=$('chWf').querySelectorAll('.bt i');if(el.length){el[1].style.background='var(--y)';el[2].style.background='var(--rd)';el[3].style.background=UN<0?'var(--rd)':'var(--g)'}
+ bars('chCiu',grp(L,'ciudad',w),'var(--c)',!mn);bars('chSec',grp(L,'sector',w),'var(--m)',!mn);bars('chTip',grp(L,'tipo',w),'var(--y)',!mn);bars('chCli',grp(L,'cliente',w),'var(--c)',!mn);
+ bars('chUt',grp(L,'tipo',o=>(+o.total||0)-(+o.costo||0)),'var(--g)',true,false);
+ const sc={};L.forEach(o=>{if(sal(o)>0)sc[o.cliente]=(sc[o.cliente]||0)+sal(o)});bars('chSal',Object.entries(sc).sort((a,b)=>b[1]-a[1]),'var(--m)');
+ bars('chGc',grp(X,'cat',o=>+o.valor||0),'var(--rd)');
+ const ec=ST.map(s=>L.filter(o=>o.estado===s).reduce((a,o)=>a+w(o),0)),et=ec.reduce((a,b)=>a+b,0);let ac=0;
+ const cg=et?ec.map((v,i)=>{const a=ac/et*360;ac+=v;return `${SC[i]} ${a}deg ${ac/et*360}deg`}).join(','):'#ffffff22 0deg 360deg';
+ $('chEst').innerHTML=`<div class="donut"><div class="ring" style="background:conic-gradient(${cg})"><div>${L.length}</div></div><div class="leg">${ST.map((s,i)=>`<div><i style="background:${SC[i]}"></i>${s}: <b>${mn?ec[i]:fm(ec[i])}</b></div>`).join('')}</div></div>`;
+ // trabajos
+ const q=$('q').value.trim().toLowerCase(),fs=$('fs').value,fp=$('fd').value;
+ const T=D.filter(o=>(!fs||o.estado===fs)&&(!fp||(fp==='d'?sal(o)>0:sal(o)===0))&&(!q||[o.cliente,o.ciudad,o.tipo,o.desc,o.sector].join(' ').toLowerCase().includes(q))).sort((a,b)=>b.recibido.localeCompare(a.recibido));
+ const act=D.filter(o=>o.estado!=='Entregado').length,lt=D.filter(o=>o.entrega&&o.entrega<today&&o.estado!=='Entregado').length,V0=sum(D,'total'),U0=V0-sum(D,'costo');
+ $('tk').innerHTML=[['Saldo por cobrar',fm(sum(D,'total')-sum(D,'abono')),'var(--m)'],['Trabajos activos',act,'var(--y)'],['Entregas vencidas',lt,'var(--rd)'],['Margen promedio',(V0?Math.round(U0/V0*100):0)+'%','var(--g)']].map(([a,b,c])=>`<div class="kpi" style="--k:${c}"><span>${a}</span><b>${b}</b></div>`).join('');
+ $('tb').innerHTML=T.map(o=>{const s=sal(o),u=(+o.total||0)-(+o.costo||0),late=o.entrega&&o.entrega<today&&o.estado!=='Entregado',si=ST.indexOf(o.estado)*(o.estado==='Entregado'?1.5:1);
+  return `<tr><td><b>${esc(o.cliente)}</b><div class="sub">${esc(o.ciudad)} · ${esc(o.sector)}</div></td><td>${esc(o.tipo)}<div class="sub">${esc(o.desc)}</div></td><td>Recibido: ${fd(o.recibido)}<div class="${late?'late':'sub'}">Entrega: ${fd(o.entrega)}${late?' (vencida)':''}</div></td><td><b class="${o.tipoRegistro==='cotizado'?'late':'ok'}">${o.tipoRegistro==='cotizado'?'COTIZADO':'VENTA'}</b></td><td class="n">${fm(o.total)}</td><td class="n">${fm(o.costo)}</td><td class="n ${u<0?'late':'ok'}">${fm(u)}<div class="sub">${o.total?Math.round(u/o.total*100):0}%</div></td><td class="n">${fm(o.abono)}</td><td class="n ${s?'debt':'ok'}">${s?fm(s):'Pagado'}</td><td><select class="st s${si}" onchange="setSt('${o.id}',this.value)" aria-label="Estado">${ST.map(x=>`<option${x===o.estado?' selected':''}>${x}</option>`).join('')}</select></td><td class="n">${s?`<button class="btn alt sm" onclick="openM('a','${o.id}')">+ Abono</button> `:''}<button class="btn alt sm" onclick="openM('t','${o.id}')">Editar</button> <button class="btn alt sm del" onclick="del('t','${o.id}',this)">Eliminar</button></td></tr>`}).join('');
+ $('em').textContent=T.length?'':(D.length?'Ningún trabajo coincide con los filtros.':'Aún no hay trabajos. Usa el botón + para registrar el primero.');
+ // gastos
+ const GG=[...G].sort((a,b)=>b.fecha.localeCompare(a.fecha)),mk=today.slice(0,7);
+ $('gk').innerHTML=[['Gastos totales',fm(sum(G,'valor')),'var(--rd)'],['Gastos del mes',fm(sum(G.filter(g=>g.fecha.startsWith(mk)),'valor')),'var(--m)'],['Registros',G.length,'var(--c)']].map(([a,b,c])=>`<div class="kpi" style="--k:${c}"><span>${a}</span><b>${b}</b></div>`).join('');
+ $('gb').innerHTML=GG.map(g=>`<tr><td>${fd(g.fecha)}</td><td>${esc(g.desc)}</td><td>${esc(g.cat)}</td><td class="n late">${fm(g.valor)}</td><td class="n"><button class="btn alt sm" onclick="openM('g','${g.id}')">Editar</button> <button class="btn alt sm del" onclick="del('g','${g.id}',this)">Eliminar</button></td></tr>`).join('');
+ $('ge').textContent=G.length?'':'Aún no hay gastos. Usa el botón + para registrar el primero.';
+ const dl=(i,k)=>$(i).innerHTML=[...new Set(D.map(o=>o[k]).filter(Boolean))].sort().map(v=>`<option value="${esc(v)}">`).join('');dl('dC','cliente');dl('dY','ciudad');dl('dP','tipo');
+}
+['q','fs','fd'].forEach(i=>$(i).addEventListener('input',render));
+// Al cambiar el rango de fechas se espera el botón manual; en el periodo habitual se actualiza automáticamente.
+let payoutManualPeriod=false;
+['semDesde','semHasta'].forEach(i=>$(i).addEventListener('change',()=>{payoutManualPeriod=true;$('liquidacionInfo').textContent='Periodo personalizado seleccionado. Presiona “Calcular liquidación” para actualizar los valores.'}));
+$('fechaPago').addEventListener('change',()=>{if(!payoutManualPeriod)renderPayouts()});
+$('calcularSocios').onclick=()=>{payoutManualPeriod=false;renderPayouts()};
+
+function calc(){const t=+$('total').value||0,a=+$('abono').value||0,c=+$('costo').value||0;$('saldo').value=fm(t-a);$('util').value=fm(t-c)+(t?' ('+Math.round((t-c)/t*100)+'%)':'');$('util').style.color=t-c<0?'var(--rd)':'';$('saldo').style.color=t-a<0?'var(--rd)':''}
+['total','abono','costo'].forEach(i=>$(i).addEventListener('input',calc));
+$('comisionActiva').addEventListener('change',()=>{$('comisionPersonaWrap').style.display=$('comisionActiva').value==='si'?'block':'none'});
+function openM(k,id){mode=k;eid=id||null;$('msg').textContent='';document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));$({t:'sT',g:'sG',a:'sA'}[k]).classList.add('on');
+ if(k==='t'){const o=D.find(x=>x.id===id)||{};['cliente','contacto','telefono','direccion','ciudad','tipo','desc','entrega'].forEach(i=>$(i).value=o[i]||'');$('comisionActiva').value=o.comisionActiva?'si':'no';$('comisionPersona').value=o.comisionPersona||'';$('comisionPersonaWrap').style.display=o.comisionActiva?'block':'none';$('sector').value=o.sector||'Comercio';$('recibido').value=o.recibido||today;$('tipoRegistro').value=o.tipoRegistro||'venta';$('total').value=o.total||'';$('costo').value=o.costo||0;$('abono').value=o.abono||0;$('estado').value=o.estado||'Diseño';$('tT').textContent=id?'Editar trabajo':'Nuevo trabajo';calc()}
+ if(k==='g'){const g=G.find(x=>x.id===id)||{};$('gf').value=g.fecha||today;$('gv').value=g.valor||'';$('gc').value=g.cat||'Nómina';$('gd').value=g.desc||'';$('gT').textContent=id?'Editar gasto':'Nuevo gasto'}
+ if(k==='a'){const o=D.find(x=>x.id===id);$('aS').textContent=o.cliente+' · saldo actual '+fm(sal(o));$('av').value=''}
+ $('mo').style.display='flex'}
+const closeM=()=>$('mo').style.display='none';$('no').onclick=closeM;$('mo').onclick=e=>{if(e.target===$('mo'))closeM()};
+$('ok').onclick=()=>{const er=t=>$('msg').textContent=t;
+ if(mode==='t'){const o={cliente:tt($('cliente').value),contacto:tt($('contacto').value),telefono:$('telefono').value.trim(),direccion:$('direccion').value.trim(),ciudad:tt($('ciudad').value),comisionActiva:$('comisionActiva').value==='si',comisionPersona:$('comisionPersona').value.trim(),sector:$('sector').value,tipo:tt($('tipo').value),desc:$('desc').value.trim(),recibido:$('recibido').value,entrega:$('entrega').value,tipoRegistro:$('tipoRegistro').value||'venta',total:+$('total').value||0,costo:+$('costo').value||0,abono:+$('abono').value||0,estado:$('estado').value};
+  if(!o.cliente||!o.contacto||!o.telefono||!o.ciudad||!o.tipo||!o.recibido||!o.total)return er('Completa los campos obligatorios: cliente/empresa, contacto, teléfono, ciudad, tipo de producto, fecha recibido y valor total.');
+  if(o.comisionActiva&&!o.comisionPersona)return er('Indica el nombre de la persona que recibirá la comisión.')
+  if(o.total<=0)return er('El valor total debe ser mayor a cero.');if(o.costo<0||o.abono<0)return er('El costo y el abono no pueden ser negativos.');if(o.abono>o.total)return er('El abono no puede ser mayor al valor total.');if(o.entrega&&o.entrega<o.recibido)return er('La entrega no puede ser anterior a la fecha recibido.');
+  if(eid){const i=D.findIndex(x=>x.id===eid);D[i]={...D[i],...o}}else{o.id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);D.push(o)}}
+ if(mode==='g'){const g={fecha:$('gf').value,valor:+$('gv').value||0,cat:$('gc').value,desc:$('gd').value.trim()};if(!g.fecha||!g.valor||!g.desc)return er('Completa fecha, descripción y valor.');
+  if(eid){const i=G.findIndex(x=>x.id===eid);G[i]={...G[i],...g}}else{g.id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);G.push(g)}}
+ if(mode==='a'){const o=D.find(x=>x.id===eid),v=+$('av').value||0;if(v<=0)return er('Ingresa un valor mayor a cero.');if(v>sal(o))return er('El abono supera el saldo pendiente ('+fm(sal(o))+').');o.abono=(+o.abono||0)+v}
+ if(mode==='t'){
+   const job=D.find(x=>x.id===eid) || D[D.length-1];
+   if(job){
+    const key=(job.cliente+'|'+job.telefono).toLowerCase();
+    const ix=CLIENTS.findIndex(c=>(c.cliente+'|'+c.telefono).toLowerCase()===key);
+    const c={cliente:job.cliente,contacto:job.contacto,telefono:job.telefono,direccion:job.direccion||'',ciudad:job.ciudad,updated:job.recibido};
+    if(ix>=0) CLIENTS[ix]={...CLIENTS[ix],...c}; else CLIENTS.push(c);
+   }
+  }
+  sv();closeM();render();renderClients();renderPartners();renderPayouts()};
+function setSt(id,v){const o=D.find(x=>x.id===id);if(o){o.estado=v;sv();render()}}
+const pend={};function del(k,id,b){if(pend[id]){if(k==='t')D=D.filter(x=>x.id!==id);else G=G.filter(x=>x.id!==id);sv();render();return}pend[id]=1;b.textContent='¿Seguro?';setTimeout(()=>{delete pend[id];if(b.isConnected)b.textContent='Eliminar'},3000)}
+$('bkG').onclick=()=>{$('bk').value=JSON.stringify({o:D,g:G,clients:CLIENTS,partners:PARTNERS,payouts:pendingPayouts,paidPayouts,BASE,paidDistributions});$('bk').select();$('bkM').textContent='Respaldo generado: '+D.length+' trabajos y '+G.length+' gastos. Copia el texto y guárdalo.'};
+$('bkR').onclick=()=>{try{let a=JSON.parse($('bk').value);if(Array.isArray(a))a={o:a,g:[]};if(!Array.isArray(a.o)||!Array.isArray(a.g))throw 0;D=a.o;G=a.g;if(Array.isArray(a.clients))CLIENTS=a.clients;if(Array.isArray(a.partners))PARTNERS=a.partners;if(Array.isArray(a.payouts))pendingPayouts=a.payouts;if(Array.isArray(a.paidPayouts))paidPayouts=a.paidPayouts;if(a.BASE)BASE=a.BASE;if(Array.isArray(a.paidDistributions))paidDistributions=a.paidDistributions;sv();render();renderClients();renderPartners();renderPayouts();$('bkM').textContent='Restaurados '+D.length+' trabajos, '+G.length+' gastos y '+CLIENTS.length+' clientes.'}catch(e){$('bkM').textContent='El texto no es un respaldo válido.'}};
+render();
+
+function csvDownload(filename, rows){
+ const csv=rows.map(row=>row.map(v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"').join(';')).join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function renderClients(){
+ // Recupera y consolida la base desde trabajos existentes para no perder clientes históricos.
+ D.forEach(job=>{if(!job.cliente||!job.contacto||!job.telefono||!job.ciudad)return;const key=(job.cliente+'|'+job.telefono).toLowerCase();const ix=CLIENTS.findIndex(c=>(c.cliente+'|'+c.telefono).toLowerCase()===key);const c={cliente:job.cliente,contacto:job.contacto,telefono:job.telefono,direccion:job.direccion||'',ciudad:job.ciudad,updated:job.recibido};if(ix>=0)CLIENTS[ix]={...CLIENTS[ix],...c};else CLIENTS.push(c)});
+ const q=($('buscarCli')?.value||'').trim().toLowerCase();
+ const list=CLIENTS.filter(c=>[c.cliente,c.contacto,c.telefono,c.direccion,c.ciudad].join(' ').toLowerCase().includes(q));
+ $('cliBody').innerHTML=list.map(c=>`<tr><td>${esc(c.cliente)}</td><td>${esc(c.contacto)}</td><td>${esc(c.telefono)}</td><td>${esc(c.direccion)}</td><td>${esc(c.ciudad)}</td><td>${fd(c.updated)}</td></tr>`).join('');
+ $('cliEmpty').textContent=list.length?'':'No hay clientes registrados. Se alimentará con los nuevos trabajos.';
+}
+$('buscarCli').addEventListener('input',renderClients);
+$('expCli').onclick=()=>csvDownload('Base_clientes_CVC.csv',[['Cliente / empresa','Contacto','Teléfono','Dirección','Ciudad','Último registro'],...CLIENTS.map(c=>[c.cliente,c.contacto,c.telefono,c.direccion,c.ciudad,c.updated])]);
+$('expTrab').onclick=()=>csvDownload('Trabajos_CVC.csv',[['Cliente','Contacto','Teléfono','Dirección','Ciudad','Sector','Producto','Descripción','Fecha recibido','Entrega','Tipo de registro (Venta/Cotizado)','Valor cotizado/venta','Costo','Abonos','Saldo','Estado','Genera comisión','Beneficiario comisión'],...D.map(o=>[o.cliente,o.contacto,o.telefono,o.direccion,o.ciudad,o.sector,o.tipo,o.desc,o.recibido,o.entrega,(o.tipoRegistro||'venta')==='cotizado'?'Cotizado':'Venta',o.total,o.costo,o.abono,sal(o),o.estado,o.comisionActiva?'Sí':'No',o.comisionPersona||''])]);
+
+function renderPartners(){
+ $('sociosLista').innerHTML=PARTNERS.map(p=>`<div class="kpi"><label>Socio</label><input data-pname="${esc(p.id)}" value="${esc(p.name)}"><label style="margin-top:8px">Participación (%)</label><input type="number" min="0" max="100" step="1" data-ppct="${esc(p.id)}" value="${+p.pct||0}"><button class="btn alt sm del" style="margin-top:8px" onclick="removePartner('${esc(p.id)}')">Eliminar socio</button></div>`).join('');
+}
+window.removePartner=(id)=>{if(PARTNERS.length<=1){alert('Debe quedar al menos un socio.');return}if(!confirm('¿Eliminar este socio?'))return;PARTNERS=PARTNERS.filter(p=>p.id!==id);sv();renderPartners()};
+$('agSocio').onclick=()=>{const name=$('nuevoSocio').value.trim();if(!name){alert('Escribe el nombre del socio.');return}PARTNERS.push({id:'p'+Date.now(),name,pct:0});$('nuevoSocio').value='';renderPartners();sv()};
+$('guardarSocios').onclick=()=>{PARTNERS=PARTNERS.map(p=>({...p,name:document.querySelector(`[data-pname="${CSS.escape(p.id)}"]`).value.trim(),pct:Math.max(0,Math.min(100,+document.querySelector(`[data-ppct="${CSS.escape(p.id)}"]`).value||0))}));const total=PARTNERS.reduce((a,p)=>a+p.pct,0);if(Math.round(total)!==100){alert('Los porcentajes de los socios deben sumar 100%. Actualmente suman '+total+'%.');return}sv();renderPartners();renderPayouts();alert('Porcentajes guardados.')};
+
+
+function renderBase(){ $('pctAhorro').value=Number(BASE.ahorro??10);$('pctComision').value=Number(BASE.comision??10); }
+$('guardarBase').onclick=()=>{const ahorro=+$('pctAhorro').value,comision=+$('pctComision').value;if(ahorro<0||ahorro>100||comision<0||comision>100){alert('Los porcentajes deben estar entre 0 y 100.');return}if(ahorro+comision>100){alert('Ahorro + comisión no puede superar 100%.');return}BASE={ahorro,comision};sv();renderBase();renderPayouts();$('baseMsg').textContent='Porcentajes guardados. Ahorro: '+ahorro+'% · Comisión: '+comision+'%.';};
+$('pctAhorro').value=BASE.ahorro??10;$('pctComision').value=BASE.comision??10;
+
+function currentWeek(){
+ const d=new Date(),day=d.getDay(),diff=(day===0?-6:1-day);
+ const monD=new Date(d);monD.setDate(d.getDate()+diff);
+ const satD=new Date(monD);satD.setDate(monD.getDate()+5);
+ $('semDesde').value=iso(monD);$('semHasta').value=iso(satD);
+ let payD=new Date(d);const target=day<=5?5:6;payD.setDate(d.getDate()+(target-day));$('fechaPago').value=iso(payD);
+}
+function renderPayouts(){
+ const from=$('semDesde').value,to=$('semHasta').value;
+ const jobs=D.filter(o=>(o.tipoRegistro||'venta')!=='cotizado'&&o.recibido>=from&&o.recibido<=to),expenses=G.filter(g=>g.fecha>=from&&g.fecha<=to&&!String(g.desc||'').startsWith('Pago socio:')&&!String(g.desc||'').startsWith('Pago comision:'));
+ const net=Math.max(0,sum(jobs,'total')-sum(jobs,'costo')-sum(expenses,'valor'));
+ const withCommission=jobs.filter(o=>o.comisionActiva&&o.comisionPersona);
+ const ahorro=Math.round(net*(+BASE.ahorro||0)/100);
+ const eligibleCommissionBase=withCommission.reduce((acc,o)=>acc+Math.max(0,(+o.total||0)-(+o.costo||0)),0);
+ const commissionTotal=withCommission.length?Math.min(Math.round(eligibleCommissionBase*(+BASE.comision||0)/100),Math.round(net*(+BASE.comision||0)/100)):0;
+ const hasCommission=commissionTotal>0;
+ const pctSocio=hasCommission?Math.max(0,(100-(+BASE.ahorro||0)-(+BASE.comision||0))/2):Math.max(0,(100-(+BASE.ahorro||0))/2);
+ const fernando=Math.round(net*pctSocio/100),angie=Math.round(net*pctSocio/100);
+ $('liquidacionInfo').textContent=`Periodo ${fd(from)} a ${fd(to)} · Ventas ${fm(sum(jobs,'total'))} · Costos ${fm(sum(jobs,'costo'))} · Gastos ${fm(sum(expenses,'valor'))} · Utilidad neta ${fm(net)} · Ahorro ${fm(ahorro)} · Comisión ${fm(commissionTotal)}.`;
+ const date=$('fechaPago').value;
+ const rows=[];
+ const add=(key,name,pct,amt,type,expense)=>{if(paidDistributions.some(x=>x.key===key&&x.from===from&&x.to===to))return;rows.push(`<tr><td>${esc(name)}</td><td>${pct}</td><td class="n">${fm(amt)}</td><td class="n"><button class="btn sm" onclick="payDistribution('${esc(key)}','${esc(name)}',${Math.round(amt)},'${esc(date)}','${esc(from)}','${esc(to)}','${type}',${expense})">Marcar pagado</button></td></tr>`)};
+ add('fernando','Fernando',pctSocio+'%',fernando,'socio',true);add('angie','Angie',pctSocio+'%',angie,'socio',true);
+ const ahorroSocio=Math.floor(ahorro/2);
+  add('ahorro:'+((PARTNERS[0]||{}).id||'socio1'),'Ahorro · '+((PARTNERS[0]||{}).name||'Socio 1'),((+BASE.ahorro||0)/2)+'%',ahorroSocio,'ahorro',false);
+  add('ahorro:'+((PARTNERS[1]||{}).id||'socio2'),'Ahorro · '+((PARTNERS[1]||{}).name||'Socio 2'),((+BASE.ahorro||0)/2)+'%',ahorro-ahorroSocio,'ahorro',false);
+ if(withCommission.length){const bases={};withCommission.forEach(o=>{const n=o.comisionPersona.trim();bases[n]=(bases[n]||0)+Math.max(0,(+o.total||0)-(+o.costo||0))});const denom=Object.values(bases).reduce((a,b)=>a+b,0)||1;Object.entries(bases).forEach(([name,base])=>add('comision:'+name,'Comisión · '+name,(+BASE.comision||0)+'% sobre utilidad',Math.round(commissionTotal*base/denom),'comision',true));}
+ $('pagosBody').innerHTML=rows.join('')||'<tr><td colspan="4" class="ok">Todos los conceptos de esta semana ya están marcados como pagados.</td></tr>';
+ // Totales acumulados de ahorro: suma de las distribuciones semanales registradas como ahorro y aún no pagadas.
+ const salesHistory=D.filter(o=>(o.tipoRegistro||'venta')!=='cotizado');const allNet=Math.max(0,sum(salesHistory,'total')-sum(salesHistory,'costo')-sum(G.filter(g=>!String(g.desc||'').startsWith('Pago socio:')&&!String(g.desc||'').startsWith('Pago comision:')),'valor'));
+ const accrued=Math.round(allNet*(+BASE.ahorro||0)/100),paidSavings=paidDistributions.filter(x=>x.type==='ahorro').reduce((a,x)=>a+x.amount,0);
+ $('liquidacionInfo').textContent+=` · Ahorro acumulado estimado histórico ${fm(Math.max(0,accrued-paidSavings))}.`;
+}
+// El botón se configura después de los controles de periodo.
+window.payDistribution=(key,name,amount,date,from,to,type,expense)=>{
+ if(!date){alert('Selecciona la fecha del pago.');return}
+ const day=new Date(date+'T12:00').getDay();if(day!==5&&day!==6){alert('La fecha de pago debe ser viernes o sábado.');return}
+ if(amount<=0){alert('El valor calculado no es positivo.');return}
+ if(!confirm(`¿Marcar pagado ${fm(amount)} para ${name}?`))return;
+ paidDistributions.push({key,name,from,to,date,amount:Math.round(amount),type,paidAt:today});
+ if(expense)G.push({id:'dist'+Date.now()+Math.random().toString(36).slice(2,5),fecha:date,valor:Math.round(amount),cat:type==='comision'?'Comisión':'Nómina',desc:`Pago ${type}: ${name} · utilidad neta ${from} a ${to}`});
+ sv();render();renderPayouts();alert(type==='ahorro'?'Ahorro marcado como pagado/trasladado.': 'Pago registrado y marcado como pagado.');
+};
+currentWeek();renderBase();renderClients();renderPartners();renderPayouts();
+
+function periodBounds(kind){
+ const n=new Date();let a,b;
+ if(kind==='week'){const day=n.getDay();a=new Date(n);a.setDate(n.getDate()-(day===0?6:day-1));b=new Date(a);b.setDate(a.getDate()+6)}
+ if(kind==='month'){a=new Date(n.getFullYear(),n.getMonth(),1);b=new Date(n.getFullYear(),n.getMonth()+1,0)}
+ if(kind==='quarter'){const q=Math.floor(n.getMonth()/3);a=new Date(n.getFullYear(),q*3,1);b=new Date(n.getFullYear(),q*3+3,0)}
+ if(kind==='year'){a=new Date(n.getFullYear(),0,1);b=new Date(n.getFullYear(),11,31)}
+ if(kind==='all'){a=new Date(2000,0,1);b=new Date(2100,0,1)}
+ return [iso(a),iso(b)];
+}
+$('bkAdmin').onclick=()=>{$('bk').value=JSON.stringify({o:D,g:G,clients:CLIENTS,partners:PARTNERS,payouts:pendingPayouts,paidPayouts});document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t==='tra'));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id==='tra'));$('bk').scrollIntoView({behavior:'smooth',block:'center'});$('bk').select();$('resetMsg').textContent='Respaldo generado en Trabajos > Respaldo de datos. Copia y guarda el texto antes de reiniciar.'};
+$('resetBtn').onclick=()=>{
+ const kind=$('resetPeriodo').value,[a,b]=periodBounds(kind);
+ if(!confirm(`ATENCIÓN: se eliminarán ${D.filter(o=>o.recibido>=a&&o.recibido<=b).length} trabajos y ${G.filter(g=>g.fecha>=a&&g.fecha<=b).length} gastos entre ${a} y ${b}. La base de clientes no se eliminará. ¿Continuar?`))return;
+ D=D.filter(o=>!(o.recibido>=a&&o.recibido<=b));G=G.filter(g=>!(g.fecha>=a&&g.fecha<=b));
+ paidPayouts=paidPayouts.filter(p=>!(p.date>=a&&p.date<=b));
+ sv();render();renderClients();renderPayouts();$('resetMsg').textContent=`Dashboard reiniciado para ${a} a ${b}. La base de clientes se conservó.`;
+};
+
+async function connectCloud(){
+ const cfg={apiKey:$('fbApi').value.trim(),authDomain:$('fbAuthDomain').value.trim(),projectId:$('fbProject').value.trim(),appId:$('fbAppId').value.trim()};
+ if(!cfg.apiKey||!cfg.authDomain||!cfg.projectId||!cfg.appId){$('cloudStatus').textContent='Completa los cuatro datos de configuración de Firebase.';return}
+ try{
+  if(!window.firebase){await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)});await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js';sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)});await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)})}
+  const appName='cvc-crm-app';
+  const app=firebase.apps.find(a=>a.name===appName)||firebase.initializeApp(cfg,appName);
+  const auth=app.auth(),db=app.firestore();
+  await auth.signInAnonymously();
+  CLOUD={app,auth,db,user:auth.currentUser};
+  $('cloudStatus').textContent='Acceso anónimo autorizado. Cargando datos compartidos…';
+  const ref=db.collection('crm_cvc').doc('shared');
+  const snap=await ref.get();
+  if(snap.exists){
+   const data=snap.data();
+   D=Array.isArray(data.D)?data.D:D;G=Array.isArray(data.G)?data.G:G;
+   CLIENTS=Array.isArray(data.CLIENTS)?data.CLIENTS:CLIENTS;
+   PARTNERS=Array.isArray(data.PARTNERS)?data.PARTNERS:PARTNERS;
+   pendingPayouts=Array.isArray(data.pendingPayouts)?data.pendingPayouts:pendingPayouts;paidPayouts=Array.isArray(data.paidPayouts)?data.paidPayouts:paidPayouts;BASE=data.BASE||BASE;paidDistributions=Array.isArray(data.paidDistributions)?data.paidDistributions:paidDistributions;
+   localStorage.setItem('cvc_crm_v1',JSON.stringify(D));localStorage.setItem('cvc_gastos_v1',JSON.stringify(G));
+   localStorage.setItem('cvc_clients_v1',JSON.stringify(CLIENTS));localStorage.setItem('cvc_partners_v1',JSON.stringify(PARTNERS));localStorage.setItem('cvc_payouts_v1',JSON.stringify(pendingPayouts));localStorage.setItem('cvc_paid_payouts_v1',JSON.stringify(paidPayouts));localStorage.setItem('cvc_base_v1',JSON.stringify(BASE));localStorage.setItem('cvc_paid_distributions_v1',JSON.stringify(paidDistributions));
+  } else await ref.set({D,G,CLIENTS,PARTNERS,pendingPayouts,paidPayouts,BASE,paidDistributions,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+  if(window._cvcUnsub)window._cvcUnsub();
+  window._cvcUnsub=ref.onSnapshot(doc=>{
+   if(!doc.exists)return;const data=doc.data();
+   D=Array.isArray(data.D)?data.D:D;G=Array.isArray(data.G)?data.G:G;
+   CLIENTS=Array.isArray(data.CLIENTS)?data.CLIENTS:CLIENTS;PARTNERS=Array.isArray(data.PARTNERS)?data.PARTNERS:PARTNERS;pendingPayouts=Array.isArray(data.pendingPayouts)?data.pendingPayouts:pendingPayouts;paidPayouts=Array.isArray(data.paidPayouts)?data.paidPayouts:paidPayouts;BASE=data.BASE||BASE;paidDistributions=Array.isArray(data.paidDistributions)?data.paidDistributions:paidDistributions;
+   try{localStorage.setItem('cvc_crm_v1',JSON.stringify(D));localStorage.setItem('cvc_gastos_v1',JSON.stringify(G));localStorage.setItem('cvc_clients_v1',JSON.stringify(CLIENTS));localStorage.setItem('cvc_partners_v1',JSON.stringify(PARTNERS));localStorage.setItem('cvc_payouts_v1',JSON.stringify(pendingPayouts))}catch(e){}
+   render();renderClients();renderPartners();renderBase();renderPayouts();$('cloudStatus').textContent='Conectado y sincronizado en tiempo real.';
+  },e=>$('cloudStatus').textContent='Error de escucha de nube: '+e.message);
+  $('cloudStatus').textContent='Conectado sin usuario ni contraseña. Sincronización en tiempo real activa.';
+ }catch(e){$('cloudStatus').textContent='No se pudo conectar: '+e.message+'. Verifica Firebase Authentication, Firestore y las reglas de acceso.'}
+}
+$('cloudConnect').onclick=connectCloud;
+// Conexión automática en cada dispositivo al abrir el enlace publicado.
+if(!Object.values(FIREBASE_CONFIG).some(v=>!v||String(v).startsWith('PEGAR_'))){
+  window.addEventListener('load',()=>connectCloud());
+}
+
+
+</script></body></html>
